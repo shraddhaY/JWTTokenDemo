@@ -1,0 +1,155 @@
+Rest API for JWT TOKEN
+
+Generate Token:
+
+URI: http://localhost:8080/token/generate-token
+Method: POST
+Header: Content-Type
+Value: application/json
+row : json
+Body: {
+	"username":"Alex123",
+	"password":"password"
+}
+Response:
+{
+    "status": 200,
+    "message": "success",
+    "result": {
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGV4MTIzIiwic2NvcGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpc3MiOiJodHRwOi8vZGV2Z2xhbi5jb20iLCJpYXQiOjE1ODA3MTI5NTksImV4cCI6MTU4MDczMDk1OX0.RcQ6LWJtHo8Imz0qIBwjATLaK5BPeXr8lZSwBrDIwWA",
+        "username": "Alex123"
+    }
+}
+
+
+
+Get User from database:
+
+URI: http://localhost:8080/users
+Method: GET
+Authorization:
+Type: Bearer Token
+Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGV4MTIzIiwic2NvcGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpc3MiOiJodHRwOi8vZGV2Z2xhbi5jb20iLCJpYXQiOjE1ODA3MTI5NTksImV4cCI6MTU4MDczMDk1OX0.RcQ6LWJtHo8Imz0qIBwjATLaK5BPeXr8lZSwBrDIwWA
+Response:
+{
+    "status": 200,
+    "message": "User list fetched successfully.",
+    "result": [
+        {
+            "id": 1,
+            "firstName": null,
+            "lastName": null,
+            "username": "Alex123",
+            "salary": 3456,
+            "age": 33
+        }
+    ]
+}
+
+
+
+Add User in database:
+
+URI: http://localhost:8080/users
+Method: POST
+Authorization:
+Type: Bearer Token
+Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGV4MTIzIiwic2NvcGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpc3MiOiJodHRwOi8vZGV2Z2xhbi5jb20iLCJpYXQiOjE1ODA3MTI5NTksImV4cCI6MTU4MDczMDk1OX0.RcQ6LWJtHo8Imz0qIBwjATLaK5BPeXr8lZSwBrDIwWA
+Body:
+{
+	        "firstName": "shraddha",
+            "lastName": "yadav",
+            "username": "Tom234",
+            "password":"password",
+            "salary": "7823",
+            "age": "23"
+}
+Response:
+{
+    "status": 200,
+    "message": "User saved successfully.",
+    "result": {
+        "id": 2,
+        "firstName": "shraddha",
+        "lastName": "yadav",
+        "username": "Tom234",
+        "salary": 7823,
+        "age": 23
+    }
+}
+
+
+
+Get UserByID from database:
+
+URI: http://localhost:8080/users/1
+Method: GET
+Authorization:
+Type: Bearer Token
+Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGV4MTIzIiwic2NvcGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpc3MiOiJodHRwOi8vZGV2Z2xhbi5jb20iLCJpYXQiOjE1ODA3MTI5NTksImV4cCI6MTU4MDczMDk1OX0.RcQ6LWJtHo8Imz0qIBwjATLaK5BPeXr8lZSwBrDIwWA
+Response:
+{
+    "status": 200,
+    "message": "User fetched successfully.",
+    "result": {
+        "id": 1,
+        "firstName": null,
+        "lastName": null,
+        "username": "Alex123",
+        "salary": 3456,
+        "age": 33
+    }
+}
+
+
+
+Update User :
+
+URI: http://localhost:8080/users/1
+Method: PUT
+Authorization:
+Type: Bearer Token
+Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGV4MTIzIiwic2NvcGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpc3MiOiJodHRwOi8vZGV2Z2xhbi5jb20iLCJpYXQiOjE1ODA3MTI5NTksImV4cCI6MTU4MDczMDk1OX0.RcQ6LWJtHo8Imz0qIBwjATLaK5BPeXr8lZSwBrDIwWA
+Body:
+{
+        "firstName": "shraddha",
+        "lastName": "yadav",
+        "username": "shraddha234",
+        "salary": 7823,
+        "age": 20
+ }
+Response:
+{
+    "status": 200,
+    "message": "User updated successfully.",
+    "result": {
+        "id": 0,
+        "firstName": "shraddha",
+        "lastName": "yadav",
+        "username": "shraddha234",
+        "password": null,
+        "age": 20,
+        "salary": 7823
+    }
+}
+
+
+
+Delete User:
+
+URI: http://localhost:8080/users/1
+Method: DELETE
+Authorization:
+Type: Bearer Token
+Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBbGV4MTIzIiwic2NvcGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpc3MiOiJodHRwOi8vZGV2Z2xhbi5jb20iLCJpYXQiOjE1ODA3MTI5NTksImV4cCI6MTU4MDczMDk1OX0.RcQ6LWJtHo8Imz0qIBwjATLaK5BPeXr8lZSwBrDIwWA
+Response:
+{
+    "status": 200,
+    "message": "User deleted successfully.",
+    "result": null
+}
+
+
+
+
+
